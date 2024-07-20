@@ -1,0 +1,20 @@
+# Guide
+
+```elixir
+Mix.install([
+  {:kino_sheetex, "~> 0.1.0"}
+])
+```
+
+## Introduction
+
+KinoSheetex is a Livebook smart cell for fetching rows from a Google Sheet.
+I’s a wrapper around `Sheetex.fetch_rows/2`.
+Authorization with Google APIs is required, either via an API key or an OAuth token
+([see documentation](https://developers.google.com/workspace/guides/create-credentials)).
+
+## Usage
+
+Find the “Fetch rows from a Google Sheet” smart cell.
+You will need to provide the spreadsheet ID and either an API key or an OAuth token for authorization.
+Other fields are optional.
