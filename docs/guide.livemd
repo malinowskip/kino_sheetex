@@ -2,19 +2,30 @@
 
 ```elixir
 Mix.install([
-  {:kino_sheetex, "~> 0.1.0"}
+  {:kino_sheetex, "~> 0.2.0"}
 ])
 ```
 
 ## Introduction
 
 KinoSheetex is a Livebook smart cell for fetching rows from a Google Sheet.
-I’s a wrapper around `Sheetex.fetch_rows/2`.
 Authorization with Google APIs is required, either via an API key or an OAuth token
 ([see documentation](https://developers.google.com/workspace/guides/create-credentials)).
 
 ## Usage
 
-Find the “Fetch rows from a Google Sheet” smart cell.
-You will need to provide the spreadsheet ID and either an API key or an OAuth token for authorization.
-Other fields are optional.
+### Select the Smart Cell
+
+Find the “Fetch rows from a Google Sheet” smart cell in the Livebook interface.
+
+### Provide the spreadsheet ID
+
+The spreadsheet ID is part of the URL of the Google Sheet.
+
+### Provide the necessary credentials
+
+You will need to provide the spreadsheet ID and either an API key or an OAuth token for authorization. You can obtain these credentials by following the instructions [here](https://developers.google.com/workspace/guides/create-credentials).
+
+### Optional fields
+
+Additionally, you may assign the result to a variable or change the output format. By default the output will include a list of rows up to the last non-empty row in the sheet (or from within the specified range). If you choose to convert the output to key-value pairs, the first row will be used as the header row [(additional information)](https://hexdocs.pm/sheetex/Sheetex.html#to_kv/2).
