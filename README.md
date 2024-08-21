@@ -8,6 +8,6 @@ The package can be installed by adding `kino_sheetex` to `Mix.install/2`.
 
 ```elixir
 Mix.install([
-  {:kino_sheetex, "~> 0.2.0"}
+  {:kino_sheetex, "~> 0.3.0"}
 ])
 ```

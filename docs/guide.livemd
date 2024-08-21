@@ -2,7 +2,7 @@
 
 ```elixir
 Mix.install([
-  {:kino_sheetex, "~> 0.2.0"}
+  {:kino_sheetex, "~> 0.3.0"}
 ])
 ```
 
