@@ -59,8 +59,10 @@ defmodule KinoSheetex.GeneratedSource do
           value = quote do: System.fetch_env!("LB_" <> unquote(value))
           Keyword.put(acc, :key, value)
 
-        "oauth_token_env" ->
-          value = quote do: System.fetch_env!("LB_" <> unquote(value))
+        "google_application_credentials_env" ->
+          value =
+            quote do: KinoSheetex.generate_oauth_token(unquote("LB_" <> value))
+
           Keyword.put(acc, :oauth_token, value)
 
         _ ->

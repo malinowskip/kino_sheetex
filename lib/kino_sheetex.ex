@@ -46,4 +46,33 @@ defmodule KinoSheetex do
   defp default_form do
     %{"output_format" => "rows"}
   end
+
+  @doc """
+  Given the name of the environment variable containing JSON credentials
+  for a Google service account, use Goth to generate a new Bearer token for
+  the service account.
+  """
+  def generate_oauth_token(credentials_env) do
+    scopes = ["https://www.googleapis.com/auth/spreadsheets"]
+
+    case System.fetch_env(credentials_env) do
+      {:ok, credentials_json_string} ->
+        case Jason.decode(credentials_json_string) do
+          {:ok, credentials} ->
+            case Goth.Token.fetch(source: {:service_account, credentials, scopes: scopes}) do
+              {:ok, %Goth.Token{token: token}} ->
+                token
+
+              {:error, reason} ->
+                raise reason
+            end
+
+          _ ->
+            raise("Failed to parse JSON credentials.")
+        end
+
+      :error ->
+        raise "The provided credentials environment variable (#{credentials_env}) is empty."
+    end
+  end
 end

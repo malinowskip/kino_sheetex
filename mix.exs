@@ -4,7 +4,7 @@ defmodule KinoSheetex.MixProject do
   def project do
     [
       app: :kino_sheetex,
-      version: "0.3.0",
+      version: "0.4.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -29,6 +29,8 @@ defmodule KinoSheetex.MixProject do
     [
       {:kino, "~> 0.13.2"},
       {:sheetex, "~> 0.4"},
+      {:goth, "~> 1.4"},
+      {:jason, "~> 1.0"},
       {:ex_doc, "~> 0.34.2", only: :dev, runtime: false}
     ]
   end

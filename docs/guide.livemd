@@ -2,29 +2,44 @@
 
 ```elixir
 Mix.install([
-  {:kino_sheetex, "~> 0.3.0"}
+  {:kino_sheetex, "~> 0.4.0"}
 ])
 ```
 
 ## Introduction
 
-KinoSheetex is a Livebook smart cell for fetching rows from a Google Sheet.
-Authorization with Google APIs is required, either via an API key or an OAuth token
-([see documentation](https://developers.google.com/workspace/guides/create-credentials)).
+KinoSheetex is a Livebook smart cell for fetching rows from Google Sheets. Data is fetched using Google APIs and requires authorization – either using an API key (for public sheets) or a service account (for public and private sheets).
+
+## Authorization
+
+For both authorization schemes (via an API key or service account), you need to have access to the [Google Cloud console](https://console.cloud.google.com).
+
+### API key authorization (accessing public sheets)
+
+1. On the APIs & Services page, make sure the [Google Sheets API](https://console.cloud.google.com/apis/library/sheets.googleapis.com) is enabled.
+2. On the [Credentials](https://console.cloud.google.com/apis/credentials) page, click on “Create Credentials”, select “API key” and save the generated key.
+3. In Livebook, store the key in a secret. You could name it `GOOGLE_SHEETS_API_KEY`.
+
+**Consider restricting your key’s access to “Google Sheets API” on the its config page in Google Cloud console.**
+
+### Service account authorization (accessing public and private sheets)
+
+1. On the APIs & Services page, make sure the [Google Sheets API](https://console.cloud.google.com/apis/library/sheets.googleapis.com) is enabled.
+2. On the [Credentials](https://console.cloud.google.com/apis/credentials) page, click on “Create Credentials”, and select “Service account”.
+3. In the form, choose the name and the ID of your service account and create it. There is no need to give it additional permissions.
+4. You will later use the service account’s email address to grant it access to sheets, so save it somewhere handy.
+5. Go to the service account’s config page. You should be able to find the link to it in the “Service Accounts” section on the [Credentials](https://console.cloud.google.com/apis/credentials) page.
+6. In the “Keys” tab, click on “Add key”, select “Create new key” and then “Create”. The key type should be “JSON” (default).
+7. Save the generated JSON file.
+8. Finally, in Livebook, store the contents of the JSON file in a secret. You could name it `GOOGLE_APPLICATION_CREDENTIALS`.
+
+**Make sure that every private sheet that you want to access using the smart cell is shared with the service account (using its email address)**
 
 ## Usage
 
-### Select the Smart Cell
+First, obtain authorization credentials outlined in the “Authorization” section above. Then, find the smart cell (“Fetch rows from a Google Sheet”) in Livebook and open it.
 
-Find the “Fetch rows from a Google Sheet” smart cell in the Livebook interface.
-
-### Provide the spreadsheet ID
-
-The spreadsheet ID is part of the URL of the Google Sheet.
-
-### Provide the necessary credentials
-
-You will need to provide the spreadsheet ID and either an API key or an OAuth token for authorization. You can obtain these credentials by following the instructions [here](https://developers.google.com/workspace/guides/create-credentials).
+Finally, paste the ID of your sheet into the “Spreadsheet ID” input field and select your authorization credentials. All other fields are optional.
 
 ### Optional fields
 
