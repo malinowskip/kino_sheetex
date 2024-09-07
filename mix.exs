@@ -44,7 +44,7 @@ defmodule KinoSheetex.MixProject do
   end
 
   defp description do
-    "A Livebook smart cell for fetching rows from a Google Sheet."
+    "A Livebook smart cell for fetching rows from Google Sheets."
   end
 
   defp package do

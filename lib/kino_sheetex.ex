@@ -48,9 +48,8 @@ defmodule KinoSheetex do
   end
 
   @doc """
-  Given the name of the environment variable containing JSON credentials
-  for a Google service account, use Goth to generate a new Bearer token for
-  the service account.
+  Given the name of the environment variable containing JSON credentials for a
+  Google service account, generate a new Bearer token for the service account.
   """
   def generate_oauth_token(credentials_env) do
     scopes = ["https://www.googleapis.com/auth/spreadsheets"]
@@ -68,7 +67,7 @@ defmodule KinoSheetex do
             end
 
           _ ->
-            raise("Failed to parse JSON credentials.")
+            raise "Failed to parse JSON credentials."
         end
 
       :error ->

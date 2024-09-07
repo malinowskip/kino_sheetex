@@ -15,7 +15,7 @@ defmodule CodeGenerationTest do
     Sheetex.fetch_rows!("123", key: System.fetch_env!("LB_" <> "GOOGLE_SHEETS_API_KEY"))
     """
 
-    assert_source_is_identical(generated, expected)
+    assert_sources_are_identical(generated, expected)
   end
 
   test "generates code when spreadsheet id and google application env provided" do
@@ -34,7 +34,7 @@ defmodule CodeGenerationTest do
     )
     """
 
-    assert_source_is_identical(generated, expected)
+    assert_sources_are_identical(generated, expected)
   end
 
   test "assigns result to variable" do
@@ -57,7 +57,7 @@ defmodule CodeGenerationTest do
     )
     """
 
-    assert_source_is_identical(generated, expected)
+    assert_sources_are_identical(generated, expected)
   end
 
   test "does not generate code if spreadsheet id is missing" do
@@ -86,7 +86,7 @@ defmodule CodeGenerationTest do
     assert generated === ""
   end
 
-  defp assert_source_is_identical(left, right) do
+  defp assert_sources_are_identical(left, right) do
     String.trim(left) === String.trim(right)
   end
 end
