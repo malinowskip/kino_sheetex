@@ -3,10 +3,14 @@ defmodule KinoSheetex.GeneratedSource do
   alias Kino.SmartCell
 
   def new(form) do
-    fetch_rows_expression(form)
-    |> maybe_transform_to_kv(form)
-    |> maybe_assign_to_variable(form)
-    |> SmartCell.quoted_to_string()
+    if has_all_required_fields?(form) do
+      fetch_rows_expression(form)
+      |> maybe_transform_to_kv(form)
+      |> maybe_assign_to_variable(form)
+      |> SmartCell.quoted_to_string()
+    else
+      ""
+    end
   end
 
   defp fetch_rows_expression(form) do
@@ -69,5 +73,11 @@ defmodule KinoSheetex.GeneratedSource do
           acc
       end
     end)
+  end
+
+  defp has_all_required_fields?(form) do
+    Map.has_key?(form, "spreadsheet_id") and
+      (Map.has_key?(form, "key_env") or
+         Map.has_key?(form, "google_application_credentials_env"))
   end
 end
