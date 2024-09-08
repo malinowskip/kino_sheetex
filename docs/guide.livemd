@@ -12,7 +12,7 @@ KinoSheetex is a Livebook smart cell for fetching rows from Google Sheets. Data 
 
 ## Usage
 
-First, obtain authorization credentials outlined in the [Authorization](#authorization) section below. Then, find the smart cell (“Fetch rows from a Google Sheet”) in Livebook and open it.
+First, obtain authorization credentials as outlined in the [Authorization](#authorization) section below. Then, find the smart cell (“Fetch rows from a Google Sheet”) in Livebook and open it.
 
 Finally, paste the ID of your sheet into the “Spreadsheet ID” input field and select your authorization credentials. All other fields are optional ([see notes on optional fields](#optional-fields)).
 
