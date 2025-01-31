@@ -31,7 +31,7 @@ defmodule KinoSheetex.MixProject do
       {:sheetex, "~> 0.4"},
       {:goth, "~> 1.4"},
       {:jason, "~> 1.0"},
-      {:ex_doc, "~> 0.34.2", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.36.1", only: :dev, runtime: false}
     ]
   end
 
